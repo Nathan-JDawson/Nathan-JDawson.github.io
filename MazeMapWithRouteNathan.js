@@ -70,6 +70,8 @@ const watchId = navigator.geolocation.watchPosition(position => {
     console.log(latitude, longitude);
   };
 
+  console.log(latitude, longitude);
+
   var onSuccess = function(geoipResponse){
     updateLocation(geoipResponse)
 
