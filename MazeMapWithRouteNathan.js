@@ -61,15 +61,33 @@ var locationController = new Mazemap.LocationController({
 locationController.setState('follow'); 
 const watchId = navigator.geolocation.watchPosition(position => {
     
-  const { latitude, longitude } = position.coords;
+  var { latitude, longitude } = position.coords;
   
-  
-  locationController.updateLocationData({
+  var updateLocation = function(geoipResponse){
+    latitude = geoipResponse.location.latitude;
+    longitude = geoipResponse.location.longitude;
+  };
+
+  var onSuccess = function(geoipResponse){
+    updateLocation(geoipResponse)
+
+    locationController.updateLocationData({
       lngLat: {
           lng: longitude,
           lat: latitude
       }
-  })
+    })
+  };
+
+  var onError = function(error){
+    console.log("error");
+  };
+  
+  return function() {
+    if (typeof geoip2 !== 'undefined') {
+      geoip2.location(onSuccess, onError);
+    }
+  }
     
   if(trigger) {
       set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, p2);
@@ -89,13 +107,13 @@ const watchId = navigator.geolocation.watchPosition(position => {
 });
 
 function resetTrigger(){
-  setTimeout(function(){
+  setTimeout(()=>{
     trigger = true;
     console.log("reset");
   }, 5000);
 }
 
-function set_route(p1, p2) {
+function set_route(p1, p2){
   // Remove previous route if present
   route_controller.clear();
 
