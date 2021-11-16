@@ -97,8 +97,8 @@ map.on("load", () => {
     lng = position.coords.longitude;
     lat = position.coords.latitude;
   */
-  var start = {lngLat: {lng: 54.0082176, lat: -2.78528}, zLevel: 0};
-  var end = {lngLat: {lng: 54.0062176, lat: -2.78428}, zLevel: 0};
+  var start = {lngLat: {lng: 54.00536094189931, lat: -2.7851830422878265}, zLevel: 0};
+  var end = {lngLat: {lng: 54.013126154243764, lat: -2.786203622817993}, zLevel: 0};
   set_route(start, end);
 
 });
