@@ -106,7 +106,7 @@ function resetTrigger(){
 
 function set_route(p1, p2){
   // Remove previous route if present
-  route_controller.clear();
+  //route_controller.clear();
 
   // Get route and show if succesful
   Mazemap.Data.getRouteJSON(p1, p2).then((geojson) => {
