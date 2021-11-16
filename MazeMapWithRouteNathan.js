@@ -128,12 +128,22 @@ function set_route(p1, p2){
   });
 };
 
+function download(filename, data) {
+    var jsonified = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+    var a = document.createElement("a");
+    a.setAttribute("href", jsonified);
+    a.setAttribute("download", `${filename}.json`);
+    a.click();
+    a.remove();
+    console.log(`downloaded ${filename}`);
+}
+
 //get route data
 function printRouteData(route){
   var routeStr = JSON.stringify(route, null, 2);
   console.log(routeStr);
-
   console.log(route);
+  download("routeData", routeStr);
 }
 
 
