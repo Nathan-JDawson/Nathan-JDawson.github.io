@@ -131,7 +131,7 @@ function set_route(p1, p2){
 //get route data
 function printRouteData(route){
   var routeStr = JSON.stringify(route, null, 2);
-  document.getElementById('route-data').innerHTML = routeStr;
+  console.log(routeStr);
 
   console.log(route);
 }
