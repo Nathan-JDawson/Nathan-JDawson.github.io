@@ -29,63 +29,67 @@ const p2 = { lngLat: { lng: -2.784581, lat: 54.005382 }, zLevel: map.zLevel };
 let route_controller;
 var trigger = true;
 
-route_controller = new Mazemap.RouteController(map);
+map.on("load", () => {
+  route_controller = new Mazemap.RouteController(map, {
+      routeLineColorPrimary: "#0099EA",
+      routeLineColorSecondary: "#888888",
+  });
             
 //BlueDot
-const blueDot = new Mazemap.BlueDot({
-    map : map
-})
-   .setAccuracy(10)
-   .show();
-  
-var locationController = new Mazemap.LocationController({
-  blueDot: blueDot,
-  map: map
-});
-
-locationController.setState('follow'); 
-const watchId = navigator.geolocation.watchPosition(position => {
+  const blueDot = new Mazemap.BlueDot({
+      map : map
+  })
+    .setAccuracy(10)
+    .show();
     
-  var { latitude, longitude } = position.coords;
-  
-  console.log(latitude, longitude);
+  var locationController = new Mazemap.LocationController({
+    blueDot: blueDot,
+    map: map
+  });
 
-  var updateLocation = function(geoipResponse){
-    latitude = geoipResponse.location.latitude;
-    longitude = geoipResponse.location.longitude;
+  locationController.setState('follow'); 
+  const watchId = navigator.geolocation.watchPosition(position => {
+      
+    var { latitude, longitude } = position.coords;
+    
+    console.log(latitude, longitude);
+
+    var updateLocation = function(geoipResponse){
+      latitude = geoipResponse.location.latitude;
+      longitude = geoipResponse.location.longitude;
+
+      console.log(latitude, longitude);
+    };
 
     console.log(latitude, longitude);
-  };
 
-  console.log(latitude, longitude);
+    var onSuccess = function(geoipResponse){
+      updateLocation(geoipResponse)
 
-  var onSuccess = function(geoipResponse){
-    updateLocation(geoipResponse)
+      locationController.updateLocationData({
+        lngLat: {
+            lng: longitude,
+            lat: latitude
+        }
+      })
+    };
 
-    locationController.updateLocationData({
-      lngLat: {
-          lng: longitude,
-          lat: latitude
-      }
-    })
-  };
-
-  var onError = function(error){
-    console.log("error");
-  };
-  
-  return function() {
-    if (typeof geoip2 !== 'undefined') {
-      geoip2.location(onSuccess, onError);
-    }
-  }
+    var onError = function(error){
+      console.log("error");
+    };
     
-  if(trigger) {
-      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, p2);
-      trigger = false;
-      resetTrigger();
-  }
-});
+    return function() {
+      if (typeof geoip2 !== 'undefined') {
+        geoip2.location(onSuccess, onError);
+      }
+    }
+      
+    if(trigger) {
+        set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, p2);
+        trigger = false;
+        resetTrigger();
+    }
+  });
   //map.flyTo({center:{lng : longitude, lat : latitude}, zoom: 18});
   // Show a map centered at latitude / longitude.
 
@@ -93,6 +97,9 @@ const watchId = navigator.geolocation.watchPosition(position => {
   lng = position.coords.longitude;
   lat = position.coords.latitude;
 */
+
+
+});
 
 function resetTrigger(){
   setTimeout(()=>{
