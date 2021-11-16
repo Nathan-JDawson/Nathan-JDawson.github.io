@@ -34,19 +34,8 @@ map.on("load", () => {
       routeLineColorPrimary: "#0099EA",
       routeLineColorSecondary: "#888888",
   });
-
-  // Set the route
-  //set_route(p1, p2);
-  
-/*const blueDot = new Mazemap.BlueDot({
-  map : map,
-}).setLngLat({lng : lng, lat : lat})
-  .setZLevel(1)
-  .setAccuracy(10)
-  .show();
-*/
             
-  //BlueDot
+//BlueDot
 const blueDot = new Mazemap.BlueDot({
     map : map
 })
@@ -129,6 +118,7 @@ function set_route(p1, p2){
 
       // Set the route
       route_controller.setPath(geojson);
+      printRouteData(geojson);
 
       // Fit the map bounds to the path bounds
       let bounds = Mazemap.Util.Turf.bbox(geojson);
@@ -136,5 +126,14 @@ function set_route(p1, p2){
   });
 };
 
-// Get and set the route
+//get route data
+function printRouteData(route){
+  var routeStr = JSON.stringify(route, null, 2);
+  document.getElementById('route-data').innerHTML = routeStr;
 
+  console.log(route);
+}
+
+var start = {lngLat: {lng: 54.0082176, lat: -2.78528}, zLevel: 0};
+var end = {lngLat: {lng: 54.0062176, lat: -2.78428}, zLevel: 0};
+set_route(start, end);
