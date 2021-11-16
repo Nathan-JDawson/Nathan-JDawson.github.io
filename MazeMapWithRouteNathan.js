@@ -29,10 +29,7 @@ const p2 = { lngLat: { lng: -2.784581, lat: 54.005382 }, zLevel: map.zLevel };
 let route_controller;
 var trigger = true;
 
-route_controller = new Mazemap.RouteController(map, {
-  routeLineColorPrimary: "#0099EA",
-  routeLineColorSecondary: "#888888",
-});
+route_controller = new Mazemap.RouteController(map);
             
 //BlueDot
 const blueDot = new Mazemap.BlueDot({
