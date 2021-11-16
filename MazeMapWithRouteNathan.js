@@ -29,7 +29,7 @@ const p2 = { lngLat: { lng: -2.784581, lat: 54.005382 }, zLevel: map.zLevel };
 let route_controller;
 var trigger = true;
 
-const route_controller = new Mazemap.RouteController(map, {
+route_controller = new Mazemap.RouteController(map, {
   routeLineColorPrimary: "#0099EA",
   routeLineColorSecondary: "#888888",
 });
@@ -106,7 +106,7 @@ function resetTrigger(){
 
 function set_route(p1, p2){
   // Remove previous route if present
-  //route_controller.clear();
+  route_controller.clear();
 
   // Get route and show if succesful
   Mazemap.Data.getRouteJSON(p1, p2).then((geojson) => {
