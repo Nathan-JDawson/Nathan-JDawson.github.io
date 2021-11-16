@@ -93,11 +93,13 @@ map.on("load", () => {
   //map.flyTo({center:{lng : longitude, lat : latitude}, zoom: 18});
   // Show a map centered at latitude / longitude.
 
-/*navigator.geolocation.getCurrentPosition(function(position){
-  lng = position.coords.longitude;
-  lat = position.coords.latitude;
-*/
-
+  /*navigator.geolocation.getCurrentPosition(function(position){
+    lng = position.coords.longitude;
+    lat = position.coords.latitude;
+  */
+  var start = {lngLat: {lng: 54.0082176, lat: -2.78528}, zLevel: 0};
+  var end = {lngLat: {lng: 54.0062176, lat: -2.78428}, zLevel: 0};
+  set_route(start, end);
 
 });
 
@@ -134,6 +136,4 @@ function printRouteData(route){
   console.log(route);
 }
 
-var start = {lngLat: {lng: 54.0082176, lat: -2.78528}, zLevel: 0};
-var end = {lngLat: {lng: 54.0062176, lat: -2.78428}, zLevel: 0};
-set_route(start, end);
+
