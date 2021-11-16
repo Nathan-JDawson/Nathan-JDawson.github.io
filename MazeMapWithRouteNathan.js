@@ -29,11 +29,10 @@ const p2 = { lngLat: { lng: -2.784581, lat: 54.005382 }, zLevel: map.zLevel };
 let route_controller;
 var trigger = true;
 
-map.on("load", () => {
-  route_controller = new Mazemap.RouteController(map, {
-      routeLineColorPrimary: "#0099EA",
-      routeLineColorSecondary: "#888888",
-  });
+const route_controller = new Mazemap.RouteController(map, {
+  routeLineColorPrimary: "#0099EA",
+  routeLineColorSecondary: "#888888",
+});
             
 //BlueDot
 const blueDot = new Mazemap.BlueDot({
@@ -97,9 +96,6 @@ const watchId = navigator.geolocation.watchPosition(position => {
   lng = position.coords.longitude;
   lat = position.coords.latitude;
 */
-
-
-});
 
 function resetTrigger(){
   setTimeout(()=>{
