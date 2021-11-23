@@ -102,7 +102,7 @@ map.on("load", () => {
   var start = {lngLat: {lng: -2.7851830422878265, lat: 54.00536094189931}, zLevel: 0};
   //LICA
   var end = {lngLat: {lng: -2.786203622817993, lat: 54.013126154243764}, zLevel: 0};
-  set_route(start, end);
+  set_route(end, start);
 
 });
 
