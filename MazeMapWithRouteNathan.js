@@ -99,7 +99,7 @@ map.on("load", () => {
   */
 
   //InfoLab
-  var start = {lngLat: {lng: -2.7851830422878265, lat: 54.00536094189931}, zLevel: 0};
+  var start = {lngLat: {lng: -2.7851830422878265, lat: 54.00536094189931}, zLevel: 4};
   //LICA
   var end = {lngLat: {lng: -2.786203622817993, lat: 54.013126154243764}, zLevel: 0};
   set_route(start, end);
@@ -145,17 +145,19 @@ function download(filename, data) {
 
 //get route data
 function printRouteData(route){
-  //console.log(route);
-  //console.log(route.features[0].geometry.coordinates[0]);
   //get features array
   const features = route.features;
   features.forEach(feature => {
     //get coordintes
     var coords = feature.geometry.coordinates;
     coords.forEach(coord => {
+      //check type is 'point' (point = stairs, etrance, etc.)
       if(feature.geometry.type !== "Point"){
         console.log("lng: " + coord[0] + " lat: " + coord[1]);
         drawPoint(coord);
+        /*
+        can add code here to do stuff with the extracted coordinates
+        */
       }
     });
   });
