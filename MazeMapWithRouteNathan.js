@@ -153,16 +153,15 @@ function printRouteData(route){
     //get coordintes
     var coords = feature.geometry.coordinates;
     coords.forEach(coord => {
-      console.log("lng: " + coord[0] + " lat: " + coord[1]);
-      drawPoint(coord);
+      if(feature.geometry.type !== "Point"){
+        console.log("lng: " + coord[0] + " lat: " + coord[1]);
+        drawPoint(coord);
+      }
     });
   });
 }
 
 function drawPoint(coord){
-  if(coord === null)
-    return;
-  console.log("Coords: " + coord);
   var marker = new Mazemap.MazeMarker({
     zLevel : 0
   })
