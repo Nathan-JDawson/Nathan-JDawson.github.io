@@ -153,17 +153,18 @@ function printRouteData(route){
     //get coordintes
     let coords = feature.geometry.coordinates;
     coords.forEach(coord => {
-      console.log("long: " + coord[0] + "lat: " + coord[1]);
+      console.log("lng: " + coord[0] + " lat: " + coord[1]);
       drawPoint(coord);
     });
   });
 }
 
 function drawPoint(coord){
+  var lngLat = { lng : coord[0] , lat : coord[1]};
   var marker = new Mazemap.MazeMarker({
     zLevel : 0
   })
-  .setLngLat(coord)
+  .setLngLat(lngLat)
   .addTo(map);
 }
 
