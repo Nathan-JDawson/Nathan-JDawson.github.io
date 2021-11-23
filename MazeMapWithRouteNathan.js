@@ -149,7 +149,7 @@ function printRouteData(route){
   const features = route.features;
   features.forEach(feature => {
     //get coordintes
-    let coords = features.geometry.coordinates;
+    let coords = feature.geometry.coordinates;
     coords.forEach(coord => {
       console.log(coord);
     });
