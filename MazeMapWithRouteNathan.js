@@ -165,7 +165,7 @@ function drawPoint(coord){
   var marker = new Mazemap.MazeMarker({
     zLevel : 0
   })
-  .setLngLat(lngLat)
+  .setLngLat(coord)
   .addTo(map);
 }
 
