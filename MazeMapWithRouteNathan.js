@@ -128,6 +128,8 @@ function set_route(p1, p2){
       // Fit the map bounds to the path bounds
       let bounds = Mazemap.Util.Turf.bbox(geojson);
       map.fitBounds(bounds, { padding: 100 });
+
+      route_controller.clear();
   });
 };
 
@@ -143,17 +145,26 @@ function download(filename, data) {
 
 //get route data
 function printRouteData(route){
-  console.log(route);
-  console.log(route.features[0].geometry.coordinates[0]);
+  //console.log(route);
+  //console.log(route.features[0].geometry.coordinates[0]);
   //get features array
   const features = route.features;
   features.forEach(feature => {
     //get coordintes
     let coords = feature.geometry.coordinates;
     coords.forEach(coord => {
-      console.log(coord);
+      console.log("long: " + coord[0] + "lat: " + coord[1]);
+      drawPoint(coord);
     });
   });
+}
+
+function drawPoint(coord){
+  var marker = new Mazemap.MazeMarker({
+    zLevel : 0
+  })
+  .setLngLat(coord)
+  .addTo(map);
 }
 
 
