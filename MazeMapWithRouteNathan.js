@@ -151,7 +151,7 @@ function printRouteData(route){
   const features = route.features;
   features.forEach(feature => {
     //get coordintes
-    let coords = feature.geometry.coordinates;
+    var coords = feature.geometry.coordinates;
     coords.forEach(coord => {
       console.log("lng: " + coord[0] + " lat: " + coord[1]);
       drawPoint(coord);
@@ -161,6 +161,8 @@ function printRouteData(route){
 
 function drawPoint(coord){
   var lngLat = { lng : coord[0] , lat : coord[1]};
+  console.log(coord);
+  console.log(lngLat);
   var marker = new Mazemap.MazeMarker({
     zLevel : 0
   })
