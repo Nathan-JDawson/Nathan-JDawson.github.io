@@ -145,6 +145,15 @@ function download(filename, data) {
 function printRouteData(route){
   console.log(route);
   console.log(route.features[0].geometry.coordinates[0]);
+  //get features array
+  const features = route.features;
+  features.forEach(feature => {
+    //get coordintes
+    let coords = features.geometry.coordinates;
+    coords.forEach(coord => {
+      console.log(coord);
+    });
+  });
 }
 
 
