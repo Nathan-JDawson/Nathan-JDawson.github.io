@@ -119,7 +119,7 @@ function set_route(p1, p2){
 
   // Get route and show if succesful
   Mazemap.Data.getRouteJSON(p1, p2).then((geojson) => {
-      console.log(geojson);
+      download("geojson", geojson);
 
       // Set the route
       route_controller.setPath(geojson);
