@@ -99,7 +99,7 @@ map.on("load", () => {
   */
 
   //InfoLab
-  var start = {lngLat: {lng: -2.7851830422878265, lat: 54.00536094189931}, zLevel: 3};
+  var start = {lngLat: {lng: -2.7851830422878265, lat: 54.00536094189931}, zLevel: 1};
   //LICA
   var end = {lngLat: {lng: -2.786203622817993, lat: 54.013126154243764}, zLevel: 0};
   set_route(start, end);
