@@ -143,11 +143,8 @@ function download(filename, data) {
 
 //get route data
 function printRouteData(route){
-  var routeStr = JSON.stringify(route, null, 1);
-  console.log(routeStr);
   console.log(route);
-  console.log(routeStr.features[0].geometry.coordinates[0]);
-  download("routeData", routeStr);
+  console.log(route.features[0].geometry.coordinates[0]);
 }
 
 
