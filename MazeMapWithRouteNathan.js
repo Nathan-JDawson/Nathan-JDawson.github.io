@@ -160,9 +160,8 @@ function printRouteData(route){
 }
 
 function drawPoint(coord){
-  var lngLat = { lng : coord[0] , lat : coord[1]};
-  console.log(coord);
-  console.log(lngLat);
+  if(coord === null)
+    return;
   var marker = new Mazemap.MazeMarker({
     zLevel : 0
   })
