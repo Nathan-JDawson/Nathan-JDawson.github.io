@@ -32,7 +32,7 @@ map.on("load", () => {
     routeLineColorSecondary: "#888888",
   });
   
-  var { latitude, longitude };
+  var latitude, longitude;
   navigator.geolocation.getCurrentPosition(position => {
     latitude  = position.coords.latitude;
     longitude = position.coords.longitude;
