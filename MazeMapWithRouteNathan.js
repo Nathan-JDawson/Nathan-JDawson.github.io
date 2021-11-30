@@ -28,17 +28,24 @@ var trigger = true;
 
 map.on("load", () => {
   route_controller = new Mazemap.RouteController(map, {
-      routeLineColorPrimary: "#0099EA",
-      routeLineColorSecondary: "#888888",
+    routeLineColorPrimary: "#0099EA",
+    routeLineColorSecondary: "#888888",
   });
-            
-//BlueDot
-  const blueDot = new Mazemap.BlueDot({
-      map : map
+  
+  var { latitude, longitude };
+  navigator.geolocation.getCurrentPosition(position => {
+    latitude  = position.coords.latitude;
+    longitude = position.coords.longitude;
   })
-    .setAccuracy(10)
-    .show();
-    
+  
+  //BlueDot
+  const blueDot = new Mazemap.BlueDot({
+    map : map
+  })
+  .setLngLat({lng: longitude, lat: latitude})
+  .setAccuracy(10)
+  .show();
+  
   var locationController = new Mazemap.LocationController({
     blueDot: blueDot,
     map: map
@@ -48,12 +55,13 @@ map.on("load", () => {
   var start = {lngLat: {lng: -2.785070389509201, lat: 54.005804684834764}};
   //LICA
   var end = {lngLat: {lng: -2.786203622817993, lat: 54.01312457817799}};
-  set_route(end, start);
+  set_route(start, end);
 
   locationController.setState('follow'); 
   const watchId = navigator.geolocation.watchPosition(position => {
       
-    var { latitude, longitude } = position.coords;
+    latitude  = position.coords.latitude;
+    longitude = position.coords.longitude;
 
     locationController.updateLocationData({
       lngLat: {
@@ -68,22 +76,11 @@ map.on("load", () => {
         resetTrigger();
     }
   });
-  //map.flyTo({center:{lng : longitude, lat : latitude}, zoom: 18});
-  // Show a map centered at latitude / longitude.
-
-  /*navigator.geolocation.getCurrentPosition(function(position){
-    lng = position.coords.longitude;
-    lat = position.coords.latitude;
-  */
-
-  
-
 });
 
 function resetTrigger(){
   setTimeout(()=>{
     trigger = true;
-    console.log("reset");
   }, 5000);
 }
 
@@ -112,6 +109,9 @@ function set_route(p1, p2){
   });
 };
 
+/*
+DEBUG FUNCTIONS
+*/
 function download(filename, data) {
     var jsonified = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
     var a = document.createElement("a");
