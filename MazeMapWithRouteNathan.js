@@ -7,18 +7,6 @@ const map = new Mazemap.Map({
   zLevel: 1,
 });
 
-let lng;
-let lat;
-
-/*navigator.geolocation.getCurrentPosition(function(position){
-lng = position.coords.longitude;
-lat = position.coords.latitude;
-
-console.log(lng);
-console.log(lat);
-})*/
-
-
 // Add map navigation controls
 map.addControl(new Mazemap.mapboxgl.NavigationControl());
 
@@ -37,7 +25,7 @@ map.on("load", () => {
   const blueDot = new Mazemap.BlueDot({
     map : map
   })
-  .setAccuracy(10)
+  .setAccuracy(50)
   .show();
   
   var locationController = new Mazemap.LocationController({
