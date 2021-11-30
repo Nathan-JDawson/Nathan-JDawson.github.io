@@ -40,24 +40,27 @@ map.on("load", () => {
   set_route(start, end);
 
   locationController.setState('follow'); 
-  const watchId = navigator.geolocation.watchPosition(position => {
+
+});
+
+const watchId = navigator.geolocation.watchPosition(position => {
       
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
+  var latitude  = position.coords.latitude;
+  var longitude = position.coords.longitude;
 
-    locationController.updateLocationData({
-      lngLat: {
-        lng: longitude,
-        lat: latitude
-      }
-    });
-
-    if(trigger) {
-      trigger = false;
-      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
+  locationController.updateLocationData({
+    lngLat: {
+      lng: longitude,
+      lat: latitude
     }
   });
+
+  if(trigger) {
+    trigger = false;
+    set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
+  }
 });
+
 
 function resetTrigger(){
   setTimeout(()=>{
