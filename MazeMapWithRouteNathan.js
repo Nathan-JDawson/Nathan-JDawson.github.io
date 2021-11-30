@@ -52,8 +52,6 @@ map.on("load", () => {
       }
     });
 
-    blueDot.setLngLat({lng: longitude, lat: latitude}, {animate: true, duration:500});
-    
     if(trigger) {
       trigger = false;
       set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
@@ -64,7 +62,7 @@ map.on("load", () => {
 function resetTrigger(){
   setTimeout(()=>{
     trigger = true;
-  }, 5000);
+  }, 1000);
 }
 
 async function set_route(p1, p2){
