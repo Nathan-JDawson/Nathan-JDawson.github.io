@@ -54,6 +54,8 @@ map.on("load", () => {
     var onSuccess = function(geoipResponse){
       updateLocation(geoipResponse);
 
+      blueDot.setLngLat({lng: longitude, lat: latitude});
+
       locationController.updateLocation({
         lngLat: {
           lng: longitude,
