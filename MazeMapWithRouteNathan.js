@@ -128,8 +128,6 @@ function set_route(p1, p2){
       // Fit the map bounds to the path bounds
       let bounds = Mazemap.Util.Turf.bbox(geojson);
       map.fitBounds(bounds, { padding: 100 });
-
-      route_controller.clear();
   });
 };
 
