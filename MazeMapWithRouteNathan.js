@@ -97,7 +97,11 @@ function set_route(p1, p2){
 
       // Set the route
       route_controller.setPath(geojson);
+      
+      /*
+      remove to print the data about route
       printRouteData(geojson);
+      */
 
       // Fit the map bounds to the path bounds
       let bounds = Mazemap.Util.Turf.bbox(geojson);
