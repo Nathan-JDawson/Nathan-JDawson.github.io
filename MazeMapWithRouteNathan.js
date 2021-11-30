@@ -15,6 +15,11 @@ const route_controller, blueDot, locationController;
 var trigger = true;
 var first = true;
 
+//InfoLab
+var start = {lngLat: {lng: -2.785070389509201, lat: 54.005804684834764}};
+//LICA
+var end = {lngLat: {lng: -2.786203622817993, lat: 54.01312457817799}};
+
 map.on("load", () => {
   route_controller = new Mazemap.RouteController(map, {
     routeLineColorPrimary: "#0099EA",
@@ -33,10 +38,7 @@ map.on("load", () => {
     map: map
   });
 
-  //InfoLab
-  var start = {lngLat: {lng: -2.785070389509201, lat: 54.005804684834764}};
-  //LICA
-  var end = {lngLat: {lng: -2.786203622817993, lat: 54.01312457817799}};
+
   set_route(start, end);
 
   locationController.setState('follow'); 
