@@ -32,17 +32,10 @@ map.on("load", () => {
     routeLineColorSecondary: "#888888",
   });
   
-  var latitude, longitude;
-  navigator.geolocation.getCurrentPosition(position => {
-    latitude  = position.coords.latitude;
-    longitude = position.coords.longitude;
-  })
-  
   //BlueDot
   const blueDot = new Mazemap.BlueDot({
     map : map
   })
-  .setLngLat({lng: longitude, lat: latitude})
   .setAccuracy(10)
   .show();
   
@@ -60,8 +53,8 @@ map.on("load", () => {
   locationController.setState('follow'); 
   const watchId = navigator.geolocation.watchPosition(position => {
       
-    latitude  = position.coords.latitude;
-    longitude = position.coords.longitude;
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
 
     locationController.updateLocationData({
       lngLat: {
