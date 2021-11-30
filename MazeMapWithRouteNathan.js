@@ -11,7 +11,7 @@ const map = new Mazemap.Map({
 map.addControl(new Mazemap.mapboxgl.NavigationControl());
 
 // Route controller will be set after the map has loaded
-const route_controller, blueDot, locationController;
+var route_controller, blueDot, locationController;
 var trigger = true;
 var first = true;
 
