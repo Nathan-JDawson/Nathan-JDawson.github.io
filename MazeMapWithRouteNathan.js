@@ -30,7 +30,7 @@ map.on("load", () => {
   blueDot = new Mazemap.BlueDot({
     map : map
   })
-  .setAccuracy(10)
+  .setAccuracy(1)
   .show();
   
   locationController = new Mazemap.LocationController({
