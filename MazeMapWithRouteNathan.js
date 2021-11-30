@@ -45,6 +45,8 @@ map.on("load", () => {
   const watchId = navigator.geolocation.watchPosition(position => {
 
     let latitude, longitude;
+    
+    blueDot.setLngLat({lng: longitude, lat: latitude});
 
     var updateLocation = function(geoipResponse){
       latitude = geoipResponse.latitude;
@@ -54,7 +56,7 @@ map.on("load", () => {
     var onSuccess = function(geoipResponse){
       updateLocation(geoipResponse);
 
-      blueDot.setLngLat({lng: longitude, lat: latitude});
+      
 
       locationController.updateLocation({
         lngLat: {
