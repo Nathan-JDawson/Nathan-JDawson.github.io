@@ -63,7 +63,7 @@ map.on("load", () => {
 function resetTrigger(){
   setTimeout(()=>{
     trigger = true;
-  }, 1000);
+  }, 5000);
 }
 
 function set_route(p1, p2){
@@ -89,9 +89,6 @@ function set_route(p1, p2){
       let bounds = Mazemap.Util.Turf.bbox(geojson);
       map.fitBounds(bounds, { padding: 100 });
     }
-    
-    resetTrigger();
-
   }).catch((e) => {
     console.log(e);
   });
