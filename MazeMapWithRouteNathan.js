@@ -43,26 +43,39 @@ map.on("load", () => {
   locationController.setState('follow'); 
 
   const watchId = navigator.geolocation.watchPosition(position => {
-        
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
 
-    locationController.updateLocationData({
-      lngLat: {
-        lng: longitude,
-        lat: latitude
-      }
-    });
+    let latitude, longitude;
 
-    blueDot.setLngLat({
-      lng: longitude,
-      lat: latitude
-    });
-
-    if(trigger) {
-      trigger = false;
-      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
+    var updateLocation = function(geoipResponse){
+      latitude = geoipResponse.latitude;
+      longitude = geoipResponse.longitude;
     }
+
+    var onSuccess = function(geoipResponse){
+      updateLocation(geoipResponse);
+
+      locationController.updateLocation({
+        lngLat: {
+          lng: longitude,
+          lat: latitude
+        }
+      })
+
+      if(trigger) {
+        trigger = false;
+        set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
+      }
+    }
+
+    var onError = function(error){
+      console.log(error);
+    }
+
+    return function(){
+      if(typeof geoip2 !== 'undefined')
+        geoip2.location(onSuccess, onError);
+    }
+    
   });
 });
 
