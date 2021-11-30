@@ -63,17 +63,13 @@ map.on("load", () => {
         lat: latitude
       }
     });
-    
-    setTimeout(() => {
-      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
-    }, 5000);
 
-    /*
+    
     if(trigger) {
         set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
         trigger = false;
         resetTrigger();
-    }*/
+    }
   });
 });
 
