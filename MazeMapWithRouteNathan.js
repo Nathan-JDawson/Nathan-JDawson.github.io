@@ -45,9 +45,9 @@ map.on("load", () => {
   });
 
   //InfoLab
-  var start = {lngLat: {lng: -2.78493000000000031, lat: 54.0054}};
+  var start = {lngLat: {lng: -2.785070389509201, lat: 54.005804684834764}};
   //LICA
-  var end = {lngLat: {lng: -2.785000185291551, lat: 54.008211570424336}, zLevel: 2};
+  var end = {lngLat: {lng: -2.786203622817993, lat: 54.01312457817799}};
   set_route(end, start);
 
   locationController.setState('follow'); 
@@ -106,7 +106,7 @@ function set_route(p1, p2){
     // Fit the map bounds to the path bounds
     let bounds = Mazemap.Util.Turf.bbox(geojson);
     map.fitBounds(bounds, { padding: 100 });
-    
+
   }).catch((e) => {
     console.log(e);
   });
