@@ -42,7 +42,7 @@ map.on("load", () => {
 
   locationController.setState('follow'); 
 
-  let {longitude, latitude} = position.coords;
+  let longitude, latitude;
   const watchId = navigator.geolocation.watchPosition(onSuccess, onError);
     
     var updateLocation = function(geoipResponse){
