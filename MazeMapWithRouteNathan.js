@@ -152,7 +152,10 @@ function printRouteData(route){
       //check type is 'point' (point = stairs, etrance, etc.)
       if(feature.geometry.type !== "Point"){
         console.log("lng: " + coord[0] + " lat: " + coord[1]);
+        /*
+        uncomment to draw all the extracted points
         drawPoint(coord);
+        */
         /*
         can add code here to do stuff with the extracted coordinates
         */
