@@ -25,6 +25,7 @@ map.addControl(new Mazemap.mapboxgl.NavigationControl());
 // Route controller will be set after the map has loaded
 let route_controller;
 var trigger = true;
+var first = true;
 
 map.on("load", () => {
   route_controller = new Mazemap.RouteController(map, {
@@ -62,12 +63,17 @@ map.on("load", () => {
         lat: latitude
       }
     });
-      
+    
+    setTimeout(() => {
+      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
+    }, 5000);
+
+    /*
     if(trigger) {
         set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
         trigger = false;
         resetTrigger();
-    }
+    }*/
   });
 });
 
@@ -93,9 +99,14 @@ function set_route(p1, p2){
     printRouteData(geojson);
     */
 
-    // Fit the map bounds to the path bounds
-    //let bounds = Mazemap.Util.Turf.bbox(geojson);
-    //map.fitBounds(bounds, { padding: 100 });
+    //Fit the map bounds to the path bounds
+    //Only call when first setting route
+    if(first){
+      first = false;
+      let bounds = Mazemap.Util.Turf.bbox(geojson);
+      map.fitBounds(bounds, { padding: 100 });
+    }
+    
 
   }).catch((e) => {
     console.log(e);
