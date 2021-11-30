@@ -43,6 +43,8 @@ map.on("load", () => {
   locationController.setState('follow'); 
 
   const watchID = navigator.geolocation.watchPosition(position => {
+    console.log("updated");
+
     const { latitude, longitude } = position.coords;
 
     locationController.updateLocationData({
