@@ -65,7 +65,7 @@ function resetTrigger(){
   }, 1000);
 }
 
-async function set_route(p1, p2){
+function set_route(p1, p2){
   // Remove previous route if present
   route_controller.clear();
 
