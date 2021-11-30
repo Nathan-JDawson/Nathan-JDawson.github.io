@@ -93,19 +93,22 @@ function set_route(p1, p2){
 
   // Get route and show if succesful
   Mazemap.Data.getRouteJSON(p1, p2).then((geojson) => {
-      //download("geojson", geojson);
+    //download("geojson", geojson);
 
-      // Set the route
-      route_controller.setPath(geojson);
+    // Set the route
+    route_controller.setPath(geojson);
       
-      /*
-      remove to print the data about route
-      printRouteData(geojson);
-      */
+    /*
+    remove to print the data about route
+    printRouteData(geojson);
+    */
 
-      // Fit the map bounds to the path bounds
-      let bounds = Mazemap.Util.Turf.bbox(geojson);
-      map.fitBounds(bounds, { padding: 100 });
+    // Fit the map bounds to the path bounds
+    let bounds = Mazemap.Util.Turf.bbox(geojson);
+    map.fitBounds(bounds, { padding: 100 });
+    
+  }).catch((e) => {
+    console.log(e);
   });
 };
 
