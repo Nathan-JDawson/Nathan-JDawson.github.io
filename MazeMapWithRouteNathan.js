@@ -22,9 +22,6 @@ console.log(lat);
 // Add map navigation controls
 map.addControl(new Mazemap.mapboxgl.NavigationControl());
 
-// Placeholder start and end points using lat-long
-const p2 = { lngLat: { lng: -2.784581, lat: 54.005382 }, zLevel: map.zLevel };
-
 // Route controller will be set after the map has loaded
 let route_controller;
 var trigger = true;
@@ -51,6 +48,7 @@ map.on("load", () => {
   const watchId = navigator.geolocation.watchPosition(position => {
       
     var { latitude, longitude } = position.coords;
+    blueDot.setLngLat({lng: longitude, lat: latitude});
     
     console.log(latitude, longitude);
 
