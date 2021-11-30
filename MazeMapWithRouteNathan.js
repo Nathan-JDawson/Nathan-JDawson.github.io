@@ -25,7 +25,7 @@ map.on("load", () => {
   const blueDot = new Mazemap.BlueDot({
     map : map
   })
-  .setAccuracy(50)
+  .setAccuracy(10)
   .show();
   
   var locationController = new Mazemap.LocationController({
@@ -52,6 +52,7 @@ map.on("load", () => {
       }
     });
 
+    blueDot.setLngLat({lng: longitude, lat: latitude}, {animate: true, duration:500});
     
     if(trigger) {
       trigger = false;
