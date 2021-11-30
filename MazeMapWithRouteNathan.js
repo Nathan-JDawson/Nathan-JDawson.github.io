@@ -76,8 +76,10 @@ map.on("load", () => {
     }
 
     return function(){
-      if(typeof geoip2 !== 'undefined')
+      if(typeof geoip2 !== 'undefined'){
+        console.log("here");
         geoip2.location(onSuccess, onError);
+      }
     }
     
   });
