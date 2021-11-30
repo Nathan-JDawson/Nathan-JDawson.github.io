@@ -44,7 +44,7 @@ map.on("load", () => {
 
   const watchId = navigator.geolocation.watchPosition(position => {
 
-    let latitude, longitude;
+    let {longitude, latitude} = position
     
     blueDot.setLngLat({lng: longitude, lat: latitude});
 
