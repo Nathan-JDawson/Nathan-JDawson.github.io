@@ -44,46 +44,26 @@ map.on("load", () => {
     map: map
   });
 
+  //InfoLab
+  var start = {lngLat: {lng: -2.78493000000000031, lat: 54.0054}};
+  //LICA
+  var end = {lngLat: {lng: -2.785000185291551, lat: 54.008211570424336}, zLevel: 2};
+  set_route(end, start);
+
   locationController.setState('follow'); 
   const watchId = navigator.geolocation.watchPosition(position => {
       
     var { latitude, longitude } = position.coords;
-    blueDot.setLngLat({lng: longitude, lat: latitude});
-    
-    console.log(latitude, longitude);
 
-    var updateLocation = function(geoipResponse){
-      latitude = geoipResponse.location.latitude;
-      longitude = geoipResponse.location.longitude;
-
-      console.log(latitude, longitude);
-    };
-
-    console.log(latitude, longitude);
-
-    var onSuccess = function(geoipResponse){
-      updateLocation(geoipResponse)
-
-      locationController.updateLocationData({
-        lngLat: {
-            lng: longitude,
-            lat: latitude
-        }
-      })
-    };
-
-    var onError = function(error){
-      console.log("error");
-    };
-    
-    return function() {
-      if (typeof geoip2 !== 'undefined') {
-        geoip2.location(onSuccess, onError);
+    locationController.updateLocationData({
+      lngLat: {
+        lng: longitude,
+        lat: latitude
       }
-    }
+    });
       
     if(trigger) {
-        set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, p2);
+        set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
         trigger = false;
         resetTrigger();
     }
@@ -96,11 +76,7 @@ map.on("load", () => {
     lat = position.coords.latitude;
   */
 
-  //InfoLab
-  var start = {lngLat: {lng: -2.78493000000000031, lat: 54.0054}};
-  //LICA
-  var end = {lngLat: {lng: -2.785000185291551, lat: 54.008211570424336}, zLevel: 2};
-  set_route(end, start);
+  
 
 });
 
