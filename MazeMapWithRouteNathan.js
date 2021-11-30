@@ -42,37 +42,22 @@ map.on("load", () => {
 
   locationController.setState('follow'); 
 
-  let longitude, latitude;
+  const watchID = navigator.geolocation.watchPosition(position => {
+    const { latitude, longitude } = position.coords;
 
-  var updateLocation = function(geoipResponse){
-    latitude = geoipResponse.latitude;
-    longitude = geoipResponse.longitude;
-  }
-
-  var onSuccess = function(geoipResponse){
-    updateLocation(geoipResponse);
-
-    blueDot.setLngLat({lng: longitude, lat: latitude});
-
-    locationController.updateLocation({
+    locationController.updateLocationData({
       lngLat: {
         lng: longitude,
         lat: latitude
       }
-    })
+    });
 
-    if(trigger) {
+    if(trigger){
+      set_route({ lngLat: {lng: longitude, lat: latitude}}, end);
       trigger = false;
-      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
+      resetTrigger();
     }
-  }
-
-  var onError = function(error){
-    console.log(error);
-  }
-
-  const watchId = navigator.geolocation.watchPosition(onSuccess, onError);
-    
+  });
 });
 
 function resetTrigger(){
