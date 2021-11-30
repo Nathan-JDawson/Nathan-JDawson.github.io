@@ -54,9 +54,8 @@ map.on("load", () => {
 
     
     if(trigger) {
-        set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
-        trigger = false;
-        resetTrigger();
+      trigger = false;
+      set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
     }
   });
 });
@@ -67,7 +66,7 @@ function resetTrigger(){
   }, 5000);
 }
 
-function set_route(p1, p2){
+async function set_route(p1, p2){
   // Remove previous route if present
   route_controller.clear();
 
@@ -91,6 +90,7 @@ function set_route(p1, p2){
       map.fitBounds(bounds, { padding: 100 });
     }
     
+    resetTrigger();
 
   }).catch((e) => {
     console.log(e);
