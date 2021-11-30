@@ -54,6 +54,11 @@ map.on("load", () => {
       }
     });
 
+    blueDot.setLngLat({
+      lng: longitude,
+      lat: latitude
+    });
+
     if(trigger) {
       trigger = false;
       set_route({ lngLat: { lng: longitude, lat: latitude }, zLevel: map.zLevel }, end);
