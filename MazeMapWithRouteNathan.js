@@ -42,12 +42,9 @@ map.on("load", () => {
 
   locationController.setState('follow'); 
 
-  const watchId = navigator.geolocation.watchPosition(position => {
-
-    let {longitude, latitude} = position.coords;
+  let {longitude, latitude} = position.coords;
+  const watchId = navigator.geolocation.watchPosition(onSuccess, onError);
     
-    blueDot.setLngLat({lng: longitude, lat: latitude});
-
     var updateLocation = function(geoipResponse){
       latitude = geoipResponse.latitude;
       longitude = geoipResponse.longitude;
@@ -56,7 +53,7 @@ map.on("load", () => {
     var onSuccess = function(geoipResponse){
       updateLocation(geoipResponse);
 
-      
+      blueDot.setLngLat({lng: longitude, lat: latitude});
 
       locationController.updateLocation({
         lngLat: {
@@ -83,7 +80,6 @@ map.on("load", () => {
     }
     
   });
-});
 
 function resetTrigger(){
   setTimeout(()=>{
