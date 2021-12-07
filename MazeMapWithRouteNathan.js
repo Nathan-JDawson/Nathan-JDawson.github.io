@@ -28,7 +28,11 @@ map.on("load", () => {
   navigator.geolocation.getCurrentPosition(position => { 
     latitude  = position.coords.latitude;
     longitude = position.coords.longitude;
+
+    console.log(latitude, longitude);
   });
+
+  console.log(latitude, longitude);
   
   //BlueDot
   const blueDot = new Mazemap.BlueDot({
