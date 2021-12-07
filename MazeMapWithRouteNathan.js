@@ -29,8 +29,7 @@ map.on("load", () => {
     map : map
   })
   .setAccuracy(10)
-  .show()
-  .setLngLat({lng : longitude, lat : latitude});
+  .show();
 
   const locationController = new Mazemap.LocationController({
     blueDot: blueDot,
