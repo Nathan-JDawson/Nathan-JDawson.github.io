@@ -23,16 +23,6 @@ map.on("load", () => {
     routeLineColorPrimary: "#0099EA",
     routeLineColorSecondary: "#888888",
   });
-
-  var latitude, longitude;
-  navigator.geolocation.getCurrentPosition(position => { 
-    latitude  = position.coords.latitude;
-    longitude = position.coords.longitude;
-
-    console.log(latitude, longitude);
-  });
-
-  console.log(latitude, longitude);
   
   //BlueDot
   const blueDot = new Mazemap.BlueDot({
@@ -41,8 +31,6 @@ map.on("load", () => {
   .setAccuracy(10)
   .show()
   .setLngLat({lng : longitude, lat : latitude});
-  
-  
 
   const locationController = new Mazemap.LocationController({
     blueDot: blueDot,
