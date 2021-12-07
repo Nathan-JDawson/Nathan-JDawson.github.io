@@ -23,14 +23,23 @@ map.on("load", () => {
     routeLineColorPrimary: "#0099EA",
     routeLineColorSecondary: "#888888",
   });
+
+  var latitude, longitude;
+  navigator.geolocation.getCurrentPosition(position => { 
+    latitude  = position.coords.latitude;
+    longitude = position.coords.longitude;
+  });
   
   //BlueDot
   const blueDot = new Mazemap.BlueDot({
     map : map
   })
-  .setAccuracy(1)
-  .show();
+  .setAccuracy(10)
+  .show()
+  .setLngLat({lng : longitude, lat : latitude});
   
+  
+
   const locationController = new Mazemap.LocationController({
     blueDot: blueDot,
     map: map
@@ -43,7 +52,7 @@ map.on("load", () => {
   const watchID = navigator.geolocation.watchPosition(position => {
     console.log("updated");
 
-    const { latitude, longitude } = position.coords;
+    var { latitude, longitude } = position.coords;
 
     locationController.updateLocationData({
       lngLat: {
@@ -52,11 +61,11 @@ map.on("load", () => {
       }
     });
 
-    if(trigger){
+    /*if(trigger){
       set_route({ lngLat: {lng: longitude, lat: latitude}}, end);
       trigger = false;
       resetTrigger();
-    }
+    }*/
   });
 });
 
