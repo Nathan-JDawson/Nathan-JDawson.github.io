@@ -7,7 +7,7 @@ const map = new Mazemap.Map({
   zLevel: 1,
 });
 
-var locationController;
+var route_controller;
 
 // Add map navigation controls
 map.addControl(new Mazemap.mapboxgl.NavigationControl());
@@ -21,7 +21,7 @@ var start = {lngLat: {lng: -2.785070389509201, lat: 54.005804684834764}};
 var end = {lngLat: {lng: -2.786203622817993, lat: 54.01312457817799}};
 
 map.on("load", () => {
-  const route_controller = new Mazemap.RouteController(map, {
+  route_controller = new Mazemap.RouteController(map, {
     routeLineColorPrimary: "#0099EA",
     routeLineColorSecondary: "#888888",
   });
@@ -33,7 +33,7 @@ map.on("load", () => {
   .setAccuracy(10)
   .show();
 
-  locationController = new Mazemap.LocationController({
+  const locationController = new Mazemap.LocationController({
     blueDot: blueDot,
     map: map
   });
