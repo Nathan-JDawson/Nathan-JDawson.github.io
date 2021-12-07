@@ -54,11 +54,11 @@ map.on("load", () => {
       }
     });
 
-    /*if(trigger){
+    if(trigger){
       set_route({ lngLat: {lng: longitude, lat: latitude}}, end);
       trigger = false;
       resetTrigger();
-    }*/
+    }
   });
 });
 
