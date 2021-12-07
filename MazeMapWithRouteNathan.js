@@ -10,8 +10,9 @@ const map = new Mazemap.Map({
 var route_controller;
 
 // Add map navigation controls
-map.addControl(new Mazemap.mapboxgl.NavigationControl());
+map.addControl(new Mazemap.mapboxgl.NavigationControl(), 'bottom-right');
 
+//switches used for methods
 var trigger = true;
 var first = true;
 
@@ -20,7 +21,9 @@ var start = {lngLat: {lng: -2.785070389509201, lat: 54.005804684834764}};
 //LICA
 var end = {lngLat: {lng: -2.786203622817993, lat: 54.01312457817799}};
 
+//rest of functions wait for the map to load
 map.on("load", () => {
+  //Route Controller
   route_controller = new Mazemap.RouteController(map, {
     routeLineColorPrimary: "#0099EA",
     routeLineColorSecondary: "#888888",
@@ -33,15 +36,19 @@ map.on("load", () => {
   .setAccuracy(10)
   .show();
 
+  //Location Controller
   const locationController = new Mazemap.LocationController({
     blueDot: blueDot,
     map: map
   });
 
+  //Will set the initial route
   set_route(start, end);
 
+  //Follow will always centre on the BlueDot as it moves
   locationController.setState('follow'); 
 
+  //Listens for change in users location
   const watchID = navigator.geolocation.watchPosition(position => {
     console.log("updated");
 
